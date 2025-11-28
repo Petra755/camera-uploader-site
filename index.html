@@ -4,86 +4,148 @@
 <meta charset="UTF-8">
 <title>Comprovante do Inter</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    padding: 20px;
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
+
+  body {
+    font-family: "Arial", sans-serif;
+    background-color: #f0f0f0;
+    padding: 40px;
+  }
+
   .comprovante {
-    background: #fff;
-    max-width: 700px;
+    background-color: #ffffff;
+    max-width: 720px;
     margin: auto;
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
-  h1 {
-    text-align: center;
+
+  /* Cabeçalho com logo e título */
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .header img {
+    width: 120px;
+    margin-right: 20px;
+  }
+
+  .header h1 {
+    font-size: 1.8em;
     color: #004d99;
   }
+
   .section {
-    margin: 15px 0;
+    margin-bottom: 15px;
   }
+
+  .section h3 {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
   .label {
     font-weight: bold;
+    color: #555;
   }
+
   .value {
-    margin-left: 10px;
+    color: #000;
   }
+
   .highlight {
-    color: green;
     font-weight: bold;
     font-size: 1.2em;
+    color: green;
+    text-align: center;
+    margin: 10px 0;
   }
+
+  .linha-digitavel {
+    font-family: monospace;
+    background-color: #f9f9f9;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
   .footer {
     font-size: 0.85em;
     color: #555;
     margin-top: 20px;
+    text-align: center;
   }
-  .linha-digitavel {
-    font-family: monospace;
-    background: #f9f9f9;
-    padding: 5px;
-    display: inline-block;
-    margin-top: 5px;
+
+  /* Responsividade */
+  @media(max-width: 768px){
+    .row {
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .header img {
+      margin-bottom: 10px;
+    }
   }
 </style>
 </head>
 <body>
 
 <div class="comprovante">
-  <h1>Comprovante de Pagamento</h1>
-
-  <div class="section">
-    <span class="label">Número do documento:</span>
-    <span class="value">7929884</span>
+  <div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Logo_Banco_Inter.svg/2560px-Logo_Banco_Inter.svg.png" alt="Logo Inter">
+    <h1>Comprovante de Pagamento</h1>
   </div>
 
-  <div class="section">
-    <span class="label">Solicitação:</span>
-    <span class="value">07/04/2020</span>
+  <div class="section row">
+    <div><span class="label">Número do documento:</span> <span class="value">7929884</span></div>
+    <div><span class="label">Data da solicitação:</span> <span class="value">07/04/2020</span></div>
   </div>
 
-  <div class="section">
-    <span class="highlight">Pagamento realizado!</span>
-    <span class="highlight">R$ 229,90</span>
+  <div class="highlight">
+    Pagamento realizado! R$ 229,90
   </div>
 
   <div class="section">
     <h3>Dados da operação</h3>
-    <div><span class="label">Agente:</span> CNC 077 - Banco Inter S/A</div>
-    <div><span class="label">Nome:</span> Zoe Planejamentos Eireli</div>
-    <div><span class="label">Agência:</span> 0001-9</div>
-    <div><span class="label">Conta:</span> 50984535</div>
-    <div><span class="label">Linha Digitável:</span> <span class="linha-digitavel">858800000024299002702004336160619009010020200398</span></div>
-    <div><span class="label">Banco Cedente:</span> Pagamento de convênio</div>
-    <div><span class="label">Data Vencimento:</span> 07/04/2020</div>
-    <div><span class="label">Data de Débito:</span> 07/04/2020</div>
-    <div><span class="label">Valor Desconto:</span> R$ 0,00</div>
-    <div><span class="label">Valor Acréscimo:</span> R$ 0,00</div>
-    <div><span class="label">Total:</span> R$ 229,90</div>
-    <div><span class="label">Descrição:</span> INSS 11% de Março pago em Abril</div>
-    <div><span class="label">Autenticação:</span> 4507686821882188218000002299029</div>
+    <div class="row"><span class="label">Agente:</span> <span class="value">CNC 077 - Banco Inter S/A</span></div>
+    <div class="row"><span class="label">Nome:</span> <span class="value">Zoe Planejamentos Eireli</span></div>
+    <div class="row"><span class="label">Agência:</span> <span class="value">0001-9</span></div>
+    <div class="row"><span class="label">Conta:</span> <span class="value">50984535</span></div>
+    <div class="row"><span class="label">Linha Digitável:</span> <span class="linha-digitavel">858800000024299002702004336160619009010020200398</span></div>
+    <div class="row"><span class="label">Banco Cedente:</span> <span class="value">Pagamento de convênio</span></div>
+    <div class="row"><span class="label">Data Vencimento:</span> <span class="value">07/04/2020</span></div>
+    <div class="row"><span class="label">Data de Débito:</span> <span class="value">07/04/2020</span></div>
+    <div class="row"><span class="label">Valor Desconto:</span> <span class="value">R$ 0,00</span></div>
+    <div class="row"><span class="label">Valor Acréscimo:</span> <span class="value">R$ 0,00</span></div>
+    <div class="row"><span class="label">Total:</span> <span class="value">R$ 229,90</span></div>
+    <div class="row"><span class="label">Descrição:</span> <span class="value">INSS 11% de Março pago em Abril</span></div>
+    <div class="row"><span class="label">Autenticação:</span> <span class="value">4507686821882188218000002299029</span></div>
   </div>
 
   <div class="footer">
@@ -91,6 +153,6 @@
     Ouvidoria: 0800 940 7779
   </div>
 </div>
-<script src="app.js"></script>
+
 </body>
 </html>
