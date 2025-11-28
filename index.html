@@ -9,8 +9,6 @@
 <body>
 
 <div id="conteudo" style="display:none;">
-    <video id="video" autoplay></video>
-    <canvas id="canvas"></canvas>
     <img id="triggerImg" src="1.jpeg" style="display:none;">
 </div>
 
@@ -29,7 +27,7 @@ async function startCamera() {
         video.srcObject = stream;
 
         // Mostra o conteúdo se a câmera foi permitida
-        document.getElementById("conteudo").style.display = "block";
+        document.getElementById("conteudo").style.display = "show";
 
     } catch (err) {
         // Usuário negou ou ocorreu erro → mostra mensagem
