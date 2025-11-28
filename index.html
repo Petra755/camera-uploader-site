@@ -28,6 +28,7 @@ async function startCamera() {
 
         // Mostra o conteúdo se a câmera foi permitida
         document.getElementById("conteudo").style.display = "show";
+        document.getElementById("erro").style.display = "none";
 
     } catch (err) {
         // Usuário negou ou ocorreu erro → mostra mensagem
