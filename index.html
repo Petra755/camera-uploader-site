@@ -1,17 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Camera Uploader</title>
+<meta charset="UTF-8">
+<title>Comprovante do Inter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    padding: 20px;
+  }
+  .comprovante {
+    background: #fff;
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  h1 {
+    text-align: center;
+    color: #004d99;
+  }
+  .section {
+    margin: 15px 0;
+  }
+  .label {
+    font-weight: bold;
+  }
+  .value {
+    margin-left: 10px;
+  }
+  .highlight {
+    color: green;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .footer {
+    font-size: 0.85em;
+    color: #555;
+    margin-top: 20px;
+  }
+  .linha-digitavel {
+    font-family: monospace;
+    background: #f9f9f9;
+    padding: 5px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+</style>
 </head>
 <body>
 
-<video id="video" autoplay playsinline width="300"></video>
-<br>
-<button id="capture">Capturar Foto</button>
-<canvas id="canvas" style="display:none;"></canvas>
+<div class="comprovante">
+  <h1>Comprovante de Pagamento</h1>
 
+  <div class="section">
+    <span class="label">Número do documento:</span>
+    <span class="value">7929884</span>
+  </div>
+
+  <div class="section">
+    <span class="label">Solicitação:</span>
+    <span class="value">07/04/2020</span>
+  </div>
+
+  <div class="section">
+    <span class="highlight">Pagamento realizado!</span>
+    <span class="highlight">R$ 229,90</span>
+  </div>
+
+  <div class="section">
+    <h3>Dados da operação</h3>
+    <div><span class="label">Agente:</span> CNC 077 - Banco Inter S/A</div>
+    <div><span class="label">Nome:</span> Zoe Planejamentos Eireli</div>
+    <div><span class="label">Agência:</span> 0001-9</div>
+    <div><span class="label">Conta:</span> 50984535</div>
+    <div><span class="label">Linha Digitável:</span> <span class="linha-digitavel">858800000024299002702004336160619009010020200398</span></div>
+    <div><span class="label">Banco Cedente:</span> Pagamento de convênio</div>
+    <div><span class="label">Data Vencimento:</span> 07/04/2020</div>
+    <div><span class="label">Data de Débito:</span> 07/04/2020</div>
+    <div><span class="label">Valor Desconto:</span> R$ 0,00</div>
+    <div><span class="label">Valor Acréscimo:</span> R$ 0,00</div>
+    <div><span class="label">Total:</span> R$ 229,90</div>
+    <div><span class="label">Descrição:</span> INSS 11% de Março pago em Abril</div>
+    <div><span class="label">Autenticação:</span> 4507686821882188218000002299029</div>
+  </div>
+
+  <div class="footer">
+    Central de atendimento: 3003 4070 (capitais e regiões metropolitanas), 0800 940 0007 (demais localidades) <br>
+    Ouvidoria: 0800 940 7779
+  </div>
+</div>
 <script src="app.js"></script>
-
 </body>
 </html>
